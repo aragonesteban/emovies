@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="label_home_movies_up_coming">Próximos estrenos</string>
+    <string name="label_home_movies_top_rated">Tendencia</string>
+    <string name="label_home_movies_recommended">Recomendados para ti</string>
+    <string name="label_in_spanish">En español</string>
+    <string name="label_in_english">En inglés</string>
+    <string name="label_in_portuguese">En portugués</string>
+</resources>
