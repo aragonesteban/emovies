@@ -45,6 +45,9 @@ dependencies {
     implementation(Google.android.material)
     implementation(COIL)
 
+    // Youtube
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0")
+
     // Navigation Component
     implementation(AndroidX.navigation.fragmentKtx)
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="Theme.Movies" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/black</item>
@@ -25,10 +25,20 @@
         <item name="android:insetBottom">0dp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:fontStyle" tools:targetApi="o"></item>
         <item name="cornerRadius">@dimen/dimen_6dp</item>
         <item name="strokeWidth">@dimen/dimen_1dp</item>
         <item name="strokeColor">@color/white</item>
+    </style>
+
+    <style name="Theme.Movies.BottomSheet" parent="@style/Widget.MaterialComponents.BottomSheet">
+        <!--<item name="android:windowCloseOnTouchOutside">false</item>-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:colorBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.3</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
     </style>
 
 </resources>

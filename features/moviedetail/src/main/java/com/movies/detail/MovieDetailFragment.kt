@@ -80,6 +80,7 @@ class MovieDetailFragment : Fragment() {
 
     private fun setMovieDetail(data: MovieDetail) {
         with(binding) {
+            loadingMovieDetail.toggleVisibility(false)
             movieDetailPoster.load(data.posterPath) {
                 crossfade(true)
             }
@@ -93,8 +94,15 @@ class MovieDetailFragment : Fragment() {
             movieDetailGenres.text = data.genres
             movieDetailOverview.text = data.overview
             btnWatchTrailer.toggleVisibility(value = data.videoYoutubeKey.isNotEmpty())
-            loadingMovieDetail.toggleVisibility(false)
+            btnWatchTrailer.setOnClickListener {
+                openMovieTrailer(data.videoYoutubeKey)
+            }
         }
+    }
+
+    private fun openMovieTrailer(videoYoutubeKey: String) {
+        val movieTrailerBottomSheet = MovieTrailerBottomSheet.newInstance(videoYoutubeKey)
+        movieTrailerBottomSheet.show(parentFragmentManager, movieTrailerBottomSheet.tag)
     }
 
 }
