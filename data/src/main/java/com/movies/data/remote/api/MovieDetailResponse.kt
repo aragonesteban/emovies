@@ -32,5 +32,6 @@ data class MovieVideoListResponse(
 
 @Serializable
 data class MovieVideoResponse(
-    val key: String,
+    val key: String? = null,
+    val official: Boolean? = false
 )

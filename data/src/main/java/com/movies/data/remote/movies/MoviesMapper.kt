@@ -1,7 +1,6 @@
 package com.movies.data.remote.movies
 
 import com.movies.data.remote.api.MovieDetailResponse
-import com.movies.data.remote.api.MovieGenresResponse
 import com.movies.data.remote.api.MovieItemResponse
 import com.movies.data.remote.api.MovieVideoResponse
 import com.movies.domain.model.MovieDetail
@@ -27,6 +26,19 @@ fun MovieDetailResponse.transformToMovieDetail(): MovieDetail {
         posterPath = "https://image.tmdb.org/t/p/original$posterPath",
         releaseDate = releaseDate ?: String(),
         voteAverage = abs(voteAverage ?: 0.0).toInt(),
-        videoYoutubeKey = if (videos?.results?.isNotEmpty() == true) videos.results.first().key else String(),
+        videoYoutubeKey = setVideoYoutubeKey(videos?.results)
     )
+}
+
+private fun setVideoYoutubeKey(results: List<MovieVideoResponse>?): String {
+    return if (results?.isNotEmpty() == true) {
+        val officialTrailers = results.filter { it.official == true }
+        if (officialTrailers.isNotEmpty()) {
+            officialTrailers.first().key.toString()
+        } else {
+            String()
+        }
+    } else {
+        String()
+    }
 }
