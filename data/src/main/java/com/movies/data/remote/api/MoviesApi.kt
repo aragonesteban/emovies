@@ -12,6 +12,8 @@ private const val DEFAULT_LANGUAGE = "en-US"
 private const val UPCOMING = "upcoming"
 private const val TOP_RATED = "top_rated"
 private const val MOVIE_ID = "movieId"
+private const val APPEND_TO_RESPONSE = "append_to_response"
+private const val VIDEOS = "videos"
 
 interface MoviesApi {
 
@@ -28,8 +30,9 @@ interface MoviesApi {
 
     @GET("{$MOVIE_ID}")
     suspend fun getMovieDetailById(
+        @Path(MOVIE_ID) movieId: Int,
         @Query(API_KEY) apikey: String = API_KEY_VALUE,
-        @Path(MOVIE_ID) movieId: Int
-    ): Response<MovieItemResponse>
+        @Query(APPEND_TO_RESPONSE) appendToResponse: String = VIDEOS
+    ): Response<MovieDetailResponse>
 
 }

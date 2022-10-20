@@ -13,6 +13,4 @@ data class MovieItemResponse(
     val id: Int? = null,
     @SerialName("poster_path")
     val posterPath: String? = null
-) {
-
-}
+)

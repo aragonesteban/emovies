@@ -9,9 +9,10 @@ import com.movies.home.databinding.ItemHomeSectionBinding
 import com.movies.shared.utils.basicDiffUtil
 
 class HomeSectionsAdapter(
-    private val onChangeRecommendedMovies: (String) -> Unit
+    private val onChangeRecommendedMovies: (String) -> Unit,
+    private val goToMovieDetail: (Int) -> Unit
 ) : ListAdapter<HomeSection, HomeSectionsViewHolder>(
-    basicDiffUtil { old, new -> old.title == new.title }
+    basicDiffUtil { old, new -> old.id == new.id }
 ) {
 
     private var languageIdSelected = ES_CO
@@ -24,15 +25,21 @@ class HomeSectionsAdapter(
     }
 
     override fun onBindViewHolder(holder: HomeSectionsViewHolder, position: Int) {
-        holder.bind(item = getItem(position), languageIdSelected) { language ->
-            languageIdSelected = language
-            onChangeRecommendedMovies.invoke(language)
-        }
+        holder.bind(
+            item = getItem(position),
+            languageIdSelected,
+            onChangeRecommendedMovies = { language ->
+                languageIdSelected = language
+                onChangeRecommendedMovies.invoke(language)
+            },
+            goToMovieDetail = goToMovieDetail
+        )
     }
 
 }
 
 data class HomeSection(
+    val id: Int,
     val isLoading: Boolean = true,
     val title: String,
     val data: List<MovieItem> = listOf(),

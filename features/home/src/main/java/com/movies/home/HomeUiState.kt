@@ -1,11 +1,9 @@
 package com.movies.home
 
-import com.movies.domain.model.MovieItem
+import com.movies.home.adapter.HomeSection
 
 sealed interface HomeUiState {
     object Loading : HomeUiState
-    data class ShowUpcomingMovies(val data: List<MovieItem>) : HomeUiState
-    data class ShowTopRatedMovies(val data: List<MovieItem>) : HomeUiState
-    data class ShowRecommendedMovies(val data: List<MovieItem>) : HomeUiState
+    data class ShowHomeSections(val data: List<HomeSection>) : HomeUiState
     object Error : HomeUiState
 }

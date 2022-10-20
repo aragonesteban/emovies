@@ -9,9 +9,13 @@ class HomeMoviesViewHolder(
     private val binding: ItemHomeMovieBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: MovieItem) {
+    fun bind(item: MovieItem, goToMovieDetail: (Int) -> Unit) {
         binding.composeMoviePoster.setContent {
-            CardMovie(image = item.poster, height = 205.dp, isInGrid = true) {}
+            CardMovie(
+                image = item.poster,
+                height = 205.dp,
+                isInGrid = true
+            ) { goToMovieDetail.invoke(item.id) }
         }
     }
 

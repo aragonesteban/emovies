@@ -2,6 +2,7 @@ package com.movies.data.repository
 
 import com.movies.data.remote.movies.RemoteMovies
 import com.movies.domain.MoviesResult
+import com.movies.domain.model.MovieDetail
 import com.movies.domain.model.MovieItem
 import com.movies.domain.repository.MoviesRepository
 import kotlinx.coroutines.CoroutineDispatcher
@@ -22,7 +23,7 @@ class MoviesRepositoryImpl @Inject constructor(
         withContext(ioDispatcher) { remoteMovies.getTopRatedMovies(language) }
 
 
-    override suspend fun getMovieDetailById(movieId: Int): MoviesResult<MovieItem> =
+    override suspend fun getMovieDetailById(movieId: Int): MoviesResult<MovieDetail> =
         withContext(ioDispatcher) { remoteMovies.getMovieDetailById(movieId) }
 
 }

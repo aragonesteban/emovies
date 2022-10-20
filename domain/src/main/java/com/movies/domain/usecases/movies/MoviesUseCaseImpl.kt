@@ -1,6 +1,7 @@
 package com.movies.domain.usecases.movies
 
 import com.movies.domain.MoviesResult
+import com.movies.domain.model.MovieDetail
 import com.movies.domain.model.MovieItem
 import com.movies.domain.repository.MoviesRepository
 import javax.inject.Inject
@@ -14,6 +15,6 @@ class MoviesUseCaseImpl @Inject constructor(
     override suspend fun getTopRatedMovies(language: String): MoviesResult<List<MovieItem>> =
         moviesRepository.getTopRatedMovies(language)
 
-    override suspend fun getMovieDetailById(movieId: Int): MoviesResult<MovieItem> =
+    override suspend fun getMovieDetailById(movieId: Int): MoviesResult<MovieDetail> =
         moviesRepository.getMovieDetailById(movieId)
 }

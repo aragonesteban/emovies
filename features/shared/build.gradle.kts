@@ -34,4 +34,5 @@ dependencies {
     implementation(AndroidX.appCompat)
     implementation(AndroidX.constraintLayout)
     implementation(AndroidX.recyclerView)
+    implementation(Google.android.material)
 }

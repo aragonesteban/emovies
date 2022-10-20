@@ -22,20 +22,26 @@ class HomeSectionsViewHolder(
     fun bind(
         item: HomeSection,
         languageIdSelected: String,
-        onChangeRecommendedMovies: (String) -> Unit
+        onChangeRecommendedMovies: (String) -> Unit,
+        goToMovieDetail: (Int) -> Unit
     ) {
         with(binding) {
             titleSection.text = item.title
             loadingSection.toggleVisibility(item.isLoading)
             if (item.showDataGrid.not()) {
-                setMoviesContentList(item.data)
+                setMoviesContentList(item.data, goToMovieDetail)
             } else {
-                setMoviesContentGrid(item.data, languageIdSelected, onChangeRecommendedMovies)
+                setMoviesContentGrid(
+                    item.data,
+                    languageIdSelected,
+                    onChangeRecommendedMovies,
+                    goToMovieDetail
+                )
             }
         }
     }
 
-    private fun setMoviesContentList(movies: List<MovieItem>) {
+    private fun setMoviesContentList(movies: List<MovieItem>, goToMovieDetail: (Int) -> Unit) {
         binding.moviesContentSection.setContent {
             LazyRow(
                 contentPadding = PaddingValues(horizontal = 16.dp),
@@ -43,7 +49,10 @@ class HomeSectionsViewHolder(
                 modifier = Modifier.padding(top = 16.dp, bottom = 10.dp)
             ) {
                 items(movies) { movie ->
-                    CardMovie(image = movie.poster, height = 200.dp) {}
+                    CardMovie(
+                        image = movie.poster,
+                        height = 200.dp
+                    ) { goToMovieDetail.invoke(movie.id) }
                 }
             }
         }
@@ -52,7 +61,8 @@ class HomeSectionsViewHolder(
     private fun setMoviesContentGrid(
         movies: List<MovieItem>,
         languageIdSelected: String,
-        onChangeRecommendedMovies: (String) -> Unit
+        onChangeRecommendedMovies: (String) -> Unit,
+        goToMovieDetail: (Int) -> Unit
     ) {
         with(binding) {
             moviesContentSection.setContent {
@@ -60,7 +70,7 @@ class HomeSectionsViewHolder(
             }
             moviesGrid.toggleVisibility(true)
             moviesGrid.apply {
-                val homeMoviesAdapter = HomeMoviesAdapter()
+                val homeMoviesAdapter = HomeMoviesAdapter(goToMovieDetail)
                 layoutManager = GridLayoutManager(context, SIZE_COLUMN_TWO)
                 adapter = homeMoviesAdapter
                 homeMoviesAdapter.submitList(movies)

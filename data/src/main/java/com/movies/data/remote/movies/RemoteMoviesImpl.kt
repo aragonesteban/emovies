@@ -4,6 +4,7 @@ import com.movies.data.remote.api.MoviesApi
 import com.movies.data.remote.api.executeRetrofitRequest
 import com.movies.data.remote.api.handleResultRetrofit
 import com.movies.domain.MoviesResult
+import com.movies.domain.model.MovieDetail
 import com.movies.domain.model.MovieItem
 import javax.inject.Inject
 
@@ -21,7 +22,7 @@ class RemoteMoviesImpl @Inject constructor(
         return handleResultRetrofit(result) { it.results.transformToMovieItemsList() }
     }
 
-    override suspend fun getMovieDetailById(movieId: Int): MoviesResult<MovieItem> {
+    override suspend fun getMovieDetailById(movieId: Int): MoviesResult<MovieDetail> {
         val result = executeRetrofitRequest { moviesApi.getMovieDetailById(movieId = movieId) }
         return handleResultRetrofit(result) { it.transformToMovieDetail() }
     }
