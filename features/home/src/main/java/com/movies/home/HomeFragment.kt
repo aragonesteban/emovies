@@ -14,6 +14,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.movies.domain.RECOMMENDED_MOVIES_SECTION
+import com.movies.domain.TOP_RATED_MOVIES_SECTION
+import com.movies.domain.UP_COMING_MOVIES_SECTION
 import com.movies.home.adapter.HomeSection
 import com.movies.home.adapter.HomeSectionsAdapter
 import com.movies.home.databinding.FragmentHomeBinding

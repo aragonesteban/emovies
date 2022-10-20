@@ -3,6 +3,9 @@ package com.movies.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.movies.domain.MoviesResult
+import com.movies.domain.RECOMMENDED_MOVIES_SECTION
+import com.movies.domain.TOP_RATED_MOVIES_SECTION
+import com.movies.domain.UP_COMING_MOVIES_SECTION
 import com.movies.domain.model.MovieItem
 import com.movies.domain.usecases.movies.MoviesUseCase
 import com.movies.home.adapter.HomeSection
@@ -12,9 +15,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-internal const val UP_COMING_MOVIES_SECTION = 0
-internal const val TOP_RATED_MOVIES_SECTION = 1
-internal const val RECOMMENDED_MOVIES_SECTION = 2
 private const val MAXIMUM_RECOMMENDED_MOVIES = 6
 
 @HiltViewModel
