@@ -16,7 +16,7 @@ fun logging(): HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
     level = HttpLoggingInterceptor.Level.BASIC
 }
 
-    @ExperimentalSerializationApi
+@ExperimentalSerializationApi
 fun buildRetrofit(baseUrl: String): Retrofit {
     val contentType = "application/json".toMediaType()
     val json = Json { ignoreUnknownKeys = true }
