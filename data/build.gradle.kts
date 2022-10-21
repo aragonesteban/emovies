@@ -12,6 +12,9 @@ android {
     defaultConfig {
         minSdk = 21
         targetSdk = 32
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     compileOptions {
@@ -54,7 +57,7 @@ dependencies {
 
     // Test
     testImplementation(Testing.junit4)
-    testImplementation(Testing.Mockito.kotlin)
+    testImplementation(Testing.MockK)
     testImplementation(Kotlin.test.testng)
     testImplementation(KotlinX.coroutines.test)
     testImplementation(AndroidX.room.testing)

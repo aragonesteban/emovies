@@ -20,46 +20,32 @@ class MoviesRepositoryImpl @Inject constructor(
 
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 
-    override suspend fun getUpcomingMovies(): MoviesResult<List<MovieItem>> {
+    override suspend fun getUpcomingMovies(isOnline: Boolean): MoviesResult<List<MovieItem>> {
         return withContext(ioDispatcher) {
-            val moviesList = localMovies.getMoviesBySection(UP_COMING_MOVIES_SECTION)
-            if (moviesList.isNotEmpty()) {
-                MoviesResult.Success(moviesList)
-            } else {
-                val result = remoteMovies.getUpcomingMovies()
-                if (result is MoviesResult.Success) {
-                    localMovies.insertMoviesItem(result.data, UP_COMING_MOVIES_SECTION)
-                }
-                result
+            handleResultGetMovies(isOnline, UP_COMING_MOVIES_SECTION) {
+                remoteMovies.getUpcomingMovies()
             }
         }
     }
-
 
     override suspend fun getTopRatedMovies(
         language: String,
         isOnline: Boolean
     ): MoviesResult<List<MovieItem>> {
         return withContext(ioDispatcher) {
-            val moviesList = localMovies.getMoviesBySection(TOP_RATED_MOVIES_SECTION)
-            if (moviesList.isNotEmpty() && isOnline.not()) {
-                MoviesResult.Success(moviesList)
-            } else {
-                val result = remoteMovies.getTopRatedMovies(language)
-                if (result is MoviesResult.Success) {
-                    localMovies.insertMoviesItem(result.data, TOP_RATED_MOVIES_SECTION)
-                }
-                result
+            handleResultGetMovies(isOnline, TOP_RATED_MOVIES_SECTION) {
+                remoteMovies.getTopRatedMovies(language)
             }
         }
     }
 
     private suspend fun handleResultGetMovies(
+        isOnline: Boolean,
         section: Int,
         remoteCall: suspend () -> MoviesResult<List<MovieItem>>
     ): MoviesResult<List<MovieItem>> {
         val moviesList = localMovies.getMoviesBySection(section)
-        return if (moviesList.isNotEmpty()) {
+        return if (moviesList.isNotEmpty() && isOnline.not()) {
             MoviesResult.Success(moviesList)
         } else {
             val result = remoteCall()

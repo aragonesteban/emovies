@@ -9,11 +9,13 @@ import javax.inject.Inject
 class MoviesUseCaseImpl @Inject constructor(
     private val moviesRepository: MoviesRepository
 ) : MoviesUseCase {
-    override suspend fun getUpcomingMovies(): MoviesResult<List<MovieItem>> =
-        moviesRepository.getUpcomingMovies()
+    override suspend fun getUpcomingMovies(isOnline: Boolean): MoviesResult<List<MovieItem>> =
+        moviesRepository.getUpcomingMovies(isOnline)
 
-    override suspend fun getTopRatedMovies(language: String, isOnline: Boolean): MoviesResult<List<MovieItem>> =
-        moviesRepository.getTopRatedMovies(language, isOnline)
+    override suspend fun getTopRatedMovies(
+        language: String,
+        isOnline: Boolean
+    ): MoviesResult<List<MovieItem>> = moviesRepository.getTopRatedMovies(language, isOnline)
 
     override suspend fun getMovieDetailById(movieId: Int): MoviesResult<MovieDetail> =
         moviesRepository.getMovieDetailById(movieId)

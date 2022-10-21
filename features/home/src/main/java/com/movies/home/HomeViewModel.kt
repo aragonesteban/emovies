@@ -31,7 +31,7 @@ class HomeViewModel @Inject constructor(
         _uiState.value = if (_homeSectionsList.isNotEmpty()) {
             HomeUiState.ShowHomeSections(_homeSectionsList)
         } else {
-            getUpComingMovies()
+            getUpComingMovies(isOnline)
             getTopRatedMovies(isOnline)
             getRecommendedMovies(ES_CO, isOnline)
             _homeSectionsList = value
@@ -39,9 +39,9 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getUpComingMovies() {
+    fun getUpComingMovies(isOnline: Boolean) {
         viewModelScope.launch {
-            _uiState.value = handleResult(moviesUseCase.getUpcomingMovies()) { data ->
+            _uiState.value = handleResult(moviesUseCase.getUpcomingMovies(isOnline)) { data ->
                 _homeSectionsList = updateHomeSectionsList(UP_COMING_MOVIES_SECTION, data)
                 HomeUiState.ShowHomeSections(_homeSectionsList)
             }

@@ -57,7 +57,7 @@ dependencies {
 
     // Tests
     testImplementation(Testing.junit4)
-    testImplementation(Testing.Mockito.kotlin)
+    testImplementation(Testing.MockK)
     testImplementation(Kotlin.test.testng)
     testImplementation(KotlinX.coroutines.test)
 }
