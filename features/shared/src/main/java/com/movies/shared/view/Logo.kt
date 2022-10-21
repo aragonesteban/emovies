@@ -18,4 +18,9 @@ class Logo @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
-) : ConstraintLayout(context, attrs, defStyleAttr)
+) : ConstraintLayout(context, attrs, defStyleAttr) {
+
+    private val binding =
+        LogoViewBinding.inflate(LayoutInflater.from(context), this, true)
+
+}

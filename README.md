@@ -1,0 +1,47 @@
+<h1 align="center">eMovies</h1>
+
+<p align="center">
+Movies App based in [The Movie DB](https://www.themoviedb.org/)
+</p>
+
+<video src="/previews/preview.mov" align="right" width="32%"/>
+
+## Tech stack
+- [Kotlin](https://kotlinlang.org/)
+- [Jetpack Compose](https://developer.android.com/jetpack/compose) Android’s modern toolkit for building native UI. (The app was built using JetpackCompose and XML for create interfaces to give a demonstration of how we can inject new way to create interfaces with old way to create interfaces).
+- [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) for dependency injection.
+- Jetpack
+    - [Lifecycle](https://developer.android.com/topic/libraries/architecture/lifecycle) - Observe Android lifecycles and handle UI states upon the lifecycle changes.
+    - [View Binding](https://developer.android.com/topic/libraries/view-binding) - Feature that allows you to more easily write code that interacts with views.
+    - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Manages UI-related data holder and lifecycle aware. Allows data to survive configuration changes such as screen rotations.
+    - [Navigation Component](https://developer.android.com/guide/navigation/navigation-getting-started) - Handling and manage the navigation in the app.
+    - [Room Persistence](https://developer.android.com/jetpack/androidx/releases/room) - Constructs Database by providing an abstraction layer over SQLite to allow fluent database access.
+- [Retrofit2 & OkHttp3](https://github.com/square/retrofit) - Construct the REST APIs.
+- [Kotlin Serialization](https://kotlinlang.org/docs/serialization.html) - A modern JSON library for Kotlin.
+- [StateFlow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow) - state-holder observable flow that emits the current and new state updates to its collectors.
+- [Coroutines](https://developer.android.com/kotlin/coroutines) - for asynchronous calls.
+- [Coil](https://coil-kt.github.io/coil/) - for loading images from network.
+- [MockK](https://mockk.io/) - Library for unit testing based in kotlin.
+- [RefreshVersion](https://github.com/jmfayard/refreshVersions) - to manage dependencies version from kotlinDSL.
+
+<br />
+
+## Architecture
+eMovie is based on the MVVM architecture and the Repository pattern and it has the approach in Clean Architecture where we can manage different layers.
+This architecture contains three main layers:
+
+- **data**: In this module/layer it will be everything about datasources like network and cache
+- **domain**: In this module lives everything about business logic working with use cases, also is the responsible to get data from data module to send it to the view.
+- **features**: In this module lives all presentation
+
+<br />
+<br />
+
+## How I run the app?
+- Clone the repository
+- Open it in Android Studio
+- Wait until dependencies are installed
+- Run app in your emulator or physical device
+
+If you don't have Android Studio and you don't want to clone the repository, you can downlad an apk [here]() 
+
