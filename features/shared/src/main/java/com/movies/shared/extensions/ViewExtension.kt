@@ -2,6 +2,6 @@ package com.movies.shared.extensions
 
 import android.view.View
 
-fun View.toggleVisibility(value: Boolean) {
-    visibility = if (value) View.VISIBLE else View.GONE
+fun View.toggleVisibility(show: Boolean) {
+    visibility = if (show) View.VISIBLE else View.GONE
 }

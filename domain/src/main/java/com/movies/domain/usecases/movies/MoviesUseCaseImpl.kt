@@ -12,8 +12,8 @@ class MoviesUseCaseImpl @Inject constructor(
     override suspend fun getUpcomingMovies(): MoviesResult<List<MovieItem>> =
         moviesRepository.getUpcomingMovies()
 
-    override suspend fun getTopRatedMovies(language: String): MoviesResult<List<MovieItem>> =
-        moviesRepository.getTopRatedMovies(language)
+    override suspend fun getTopRatedMovies(language: String, isOnline: Boolean): MoviesResult<List<MovieItem>> =
+        moviesRepository.getTopRatedMovies(language, isOnline)
 
     override suspend fun getMovieDetailById(movieId: Int): MoviesResult<MovieDetail> =
         moviesRepository.getMovieDetailById(movieId)

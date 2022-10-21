@@ -22,17 +22,34 @@ class MoviesRepositoryImpl @Inject constructor(
 
     override suspend fun getUpcomingMovies(): MoviesResult<List<MovieItem>> {
         return withContext(ioDispatcher) {
-            handleResultGetMovies(UP_COMING_MOVIES_SECTION) {
-                remoteMovies.getUpcomingMovies()
+            val moviesList = localMovies.getMoviesBySection(UP_COMING_MOVIES_SECTION)
+            if (moviesList.isNotEmpty()) {
+                MoviesResult.Success(moviesList)
+            } else {
+                val result = remoteMovies.getUpcomingMovies()
+                if (result is MoviesResult.Success) {
+                    localMovies.insertMoviesItem(result.data, UP_COMING_MOVIES_SECTION)
+                }
+                result
             }
         }
     }
 
 
-    override suspend fun getTopRatedMovies(language: String): MoviesResult<List<MovieItem>> {
+    override suspend fun getTopRatedMovies(
+        language: String,
+        isOnline: Boolean
+    ): MoviesResult<List<MovieItem>> {
         return withContext(ioDispatcher) {
-            handleResultGetMovies(TOP_RATED_MOVIES_SECTION) {
-                remoteMovies.getTopRatedMovies(language)
+            val moviesList = localMovies.getMoviesBySection(TOP_RATED_MOVIES_SECTION)
+            if (moviesList.isNotEmpty() && isOnline.not()) {
+                MoviesResult.Success(moviesList)
+            } else {
+                val result = remoteMovies.getTopRatedMovies(language)
+                if (result is MoviesResult.Success) {
+                    localMovies.insertMoviesItem(result.data, TOP_RATED_MOVIES_SECTION)
+                }
+                result
             }
         }
     }

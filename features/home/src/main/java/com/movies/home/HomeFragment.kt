@@ -20,6 +20,7 @@ import com.movies.domain.UP_COMING_MOVIES_SECTION
 import com.movies.home.adapter.HomeSection
 import com.movies.home.adapter.HomeSectionsAdapter
 import com.movies.home.databinding.FragmentHomeBinding
+import com.movies.shared.extensions.isOnline
 import com.movies.shared.extensions.toggleVisibility
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -68,7 +69,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupObservers()
-        viewModel.setHomeSectionsList(homeSectionsList)
+        viewModel.setHomeSectionsList(homeSectionsList, requireContext().isOnline())
     }
 
     private fun setupRecycler(homeSectionsList: List<HomeSection>) {
@@ -107,7 +108,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun onChangeRecommendedMovies(language: String) {
-        viewModel.getRecommendedMovies(language)
+        viewModel.getRecommendedMovies(language, requireContext().isOnline())
     }
 
     private fun goToMovieDetail(movieId: Int) {

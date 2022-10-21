@@ -27,13 +27,13 @@ class HomeViewModel @Inject constructor(
 
     private var _homeSectionsList = listOf<HomeSection>()
 
-    fun setHomeSectionsList(value: List<HomeSection>) {
+    fun setHomeSectionsList(value: List<HomeSection>, isOnline: Boolean) {
         _uiState.value = if (_homeSectionsList.isNotEmpty()) {
             HomeUiState.ShowHomeSections(_homeSectionsList)
         } else {
             getUpComingMovies()
-            getTopRatedMovies()
-            getRecommendedMovies(ES_CO)
+            getTopRatedMovies(isOnline)
+            getRecommendedMovies(ES_CO, isOnline)
             _homeSectionsList = value
             HomeUiState.ShowHomeSections(_homeSectionsList)
         }
@@ -48,24 +48,25 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getTopRatedMovies() {
+    fun getTopRatedMovies(isOnline: Boolean) {
         viewModelScope.launch {
             _uiState.value =
-                handleResult(moviesUseCase.getTopRatedMovies(language = EN_US)) { data ->
+                handleResult(moviesUseCase.getTopRatedMovies(EN_US, isOnline)) { data ->
                     _homeSectionsList = updateHomeSectionsList(TOP_RATED_MOVIES_SECTION, data)
                     HomeUiState.ShowHomeSections(_homeSectionsList)
                 }
         }
     }
 
-    fun getRecommendedMovies(language: String) {
+    fun getRecommendedMovies(language: String, isOnline: Boolean) {
         viewModelScope.launch {
-            _uiState.value = handleResult(moviesUseCase.getTopRatedMovies(language)) { data ->
-                val recommendedMovies = data.take(MAXIMUM_RECOMMENDED_MOVIES)
-                _homeSectionsList =
-                    updateHomeSectionsList(RECOMMENDED_MOVIES_SECTION, recommendedMovies)
-                HomeUiState.ShowHomeSections(_homeSectionsList)
-            }
+            _uiState.value =
+                handleResult(moviesUseCase.getTopRatedMovies(language, isOnline)) { data ->
+                    val recommendedMovies = data.take(MAXIMUM_RECOMMENDED_MOVIES)
+                    _homeSectionsList =
+                        updateHomeSectionsList(RECOMMENDED_MOVIES_SECTION, recommendedMovies)
+                    HomeUiState.ShowHomeSections(_homeSectionsList)
+                }
         }
     }
 

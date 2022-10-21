@@ -19,7 +19,6 @@ import com.movies.shared.extensions.toggleVisibility
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-
 @AndroidEntryPoint
 class MovieDetailFragment : Fragment() {
 
@@ -85,15 +84,15 @@ class MovieDetailFragment : Fragment() {
                 crossfade(true)
             }
             movieDetailTitle.text = data.title
-            movieDetailYear.toggleVisibility(true)
+            movieDetailYear.toggleVisibility(show = true)
             movieDetailYear.text = data.releaseDate.split("-").first()
-            movieDetailLanguage.toggleVisibility(true)
+            movieDetailLanguage.toggleVisibility(show = true)
             movieDetailLanguage.text = data.originalLanguage
-            movieDetailRating.toggleVisibility(true)
+            movieDetailRating.toggleVisibility(show = true)
             movieDetailRating.text = data.voteAverage.toString()
             movieDetailGenres.text = data.genres
             movieDetailOverview.text = data.overview
-            btnWatchTrailer.toggleVisibility(value = data.videoYoutubeKey.isNotEmpty())
+            btnWatchTrailer.toggleVisibility(show = data.videoYoutubeKey.isNotEmpty())
             btnWatchTrailer.setOnClickListener {
                 openMovieTrailer(data.videoYoutubeKey)
             }
@@ -112,5 +111,4 @@ class MovieDetailFragment : Fragment() {
             Toast.LENGTH_LONG
         ).show()
     }
-
 }

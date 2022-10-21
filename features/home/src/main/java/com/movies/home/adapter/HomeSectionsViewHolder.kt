@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.movies.domain.model.MovieItem
 import com.movies.home.databinding.ItemHomeSectionBinding
+import com.movies.shared.extensions.isOnline
 import com.movies.shared.extensions.toggleVisibility
 
 const val SIZE_COLUMN_TWO = 2
@@ -65,6 +66,7 @@ class HomeSectionsViewHolder(
         goToMovieDetail: (Int) -> Unit
     ) {
         with(binding) {
+            moviesContentSection.toggleVisibility(show = root.context.isOnline())
             moviesContentSection.setContent {
                 CustomDropDownLanguages(languageIdSelected, onChangeRecommendedMovies)
             }
