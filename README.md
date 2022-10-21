@@ -1,10 +1,17 @@
 <h1 align="center">eMovies</h1>
 
-<p align="center">
-Movies App based in [The Movie DB](https://www.themoviedb.org/)
-</p>
+<h3 align="center">
+Movies App based in https://www.themoviedb.org
+</h3>
 
-<video src="/previews/preview.mov" align="right" width="32%"/>
+<div align="center">
+<img src="/previews/home.png" width="300"/>
+    
+<img src="/previews/detail.png" width="300"/>
+   
+<img src="/previews/trailer.png" width="300"/>
+</div>
+
 
 ## Tech stack
 - [Kotlin](https://kotlinlang.org/)
@@ -27,14 +34,13 @@ Movies App based in [The Movie DB](https://www.themoviedb.org/)
 <br />
 
 ## Architecture
-eMovie is based on the MVVM architecture and the Repository pattern and it has the approach in Clean Architecture where we can manage different layers.
+**eMovies** is based on the MVVM architecture and the Repository pattern and it has the approach in Clean Architecture where we can manage different layers.
 This architecture contains three main layers:
 
 - **data**: In this module/layer it will be everything about datasources like network and cache
 - **domain**: In this module lives everything about business logic working with use cases, also is the responsible to get data from data module to send it to the view.
 - **features**: In this module lives all presentation
 
-<br />
 <br />
 
 ## How I run the app?
@@ -43,5 +49,7 @@ This architecture contains three main layers:
 - Wait until dependencies are installed
 - Run app in your emulator or physical device
 
-If you don't have Android Studio and you don't want to clone the repository, you can downlad an apk [here]() 
+If you don't have Android Studio and you don't want to clone the repository, you can downlad an apk [here](https://www.mediafire.com/file/si1kpvvwgbsn8eg/eMovies.apk/file) 
+
+
 
