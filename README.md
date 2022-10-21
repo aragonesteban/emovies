@@ -1,7 +1,7 @@
 <h1 align="center">eMovies</h1>
 
 <h3 align="center">
-Movies App based in www.themoviedb.org
+Android Movies App based in www.themoviedb.org using MAD (Modern Android Development)
 </h3>
 
 <div align="center">
