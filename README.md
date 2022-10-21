@@ -1,7 +1,7 @@
 <h1 align="center">eMovies</h1>
 
 <h3 align="center">
-Movies App based in https://www.themoviedb.org
+Movies App based in www.themoviedb.org
 </h3>
 
 <div align="center">
