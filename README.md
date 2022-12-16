@@ -51,11 +51,3 @@ This architecture contains three main layers:
 
 If you don't have Android Studio and you don't want to clone the repository, you can downlad an apk [here](https://www.mediafire.com/file/si1kpvvwgbsn8eg/eMovies.apk/file) 
 
-
-## Questions
-1. ¿En qué consiste el principio de responsabilidad única? ¿Cuál es su propósito? 
- - Este principio se basa practicamente en que un objeto o función debe hacer una única cosa, esto con el propósito de separar responsabilidades y tener un orden en qué hace cada cosa.
-2. ¿Qué características tiene, según su opinión, un “buen” código o código limpio? 
- - En mi concepto un bueno código o código limpio es aquel que habla por si solo, es entendible, escalable y perdura en el tiempo.
-3. Detalla cómo harías todo aquello que no hayas llegado a completar. 
- - No agregue muchas animaciones como lo esperaba, tal vez haría algo con MotionLayout en el detalle de la pelicula cuando se muestra o aún mejor, usuaria JetpackCompose para gestionar estas animaciones en este modulo de la app. 
